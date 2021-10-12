@@ -6,7 +6,6 @@ import { NotFoundPageComponent } from './routing/not-found/pages/not-found-page/
 
 @NgModule({
   declarations: [
-    NotFoundPageComponent
   ],
   imports: [
     CommonModule,
