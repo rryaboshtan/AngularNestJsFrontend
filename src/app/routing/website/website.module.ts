@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { NotFoundPageComponent } from './website/routing/not-found/pages/not-found-page/not-found-page.component';
+import { NotFoundPageComponent } from './routing/not-found/pages/not-found-page/not-found-page.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +14,7 @@ import { NotFoundPageComponent } from './website/routing/not-found/pages/not-fou
       {
         path: '**',
         loadChildren: () =>
-          import('./website/routing/not-found/not-found.module.ts').then(
+          import('./routing/not-found/not-found.module').then(
             (module) => module.NotFoundModule
           ),
       },
