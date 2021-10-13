@@ -9,7 +9,7 @@ import { WebsiteModule } from './routing/website/website.module';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([]),
+    RouterModule.forRoot([{ path: 'home', loadChildren: () => import('./routing/website/routing/home/home.module').then(m => m.HomeModule) }]),
     WebsiteModule],
   providers: [],
   bootstrap: [AppComponent],
