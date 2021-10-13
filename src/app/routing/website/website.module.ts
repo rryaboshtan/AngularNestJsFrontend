@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { AdminAuthGuard } from './guards/admin-auth.guard';
 import { AdminGuestGuard } from './guards/admin-guest.guard';
 
 @NgModule({
@@ -31,6 +32,8 @@ import { AdminGuestGuard } from './guards/admin-guest.guard';
           import('./routing/admin/admin.module').then(
             (module) => module.AdminModule
           ),
+        canLoad: [AdminAuthGuard],
+        canActivate: [AdminAuthGuard],
       },
       {
         path: '**',
@@ -41,6 +44,6 @@ import { AdminGuestGuard } from './guards/admin-guest.guard';
       },
     ]),
   ],
-  providers: [AdminGuestGuard],
+  providers: [AdminGuestGuard, AdminAuthGuard],
 })
 export class WebsiteModule {}

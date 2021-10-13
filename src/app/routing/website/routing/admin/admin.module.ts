@@ -7,9 +7,6 @@ import { DashboardPageComponent } from './routing/dashboard/pages/dashboard-page
 
 @NgModule({
   declarations: [
-    // AdminComponent,
-    // DashboardComponent,
-    DashboardPageComponent,
   ],
   imports: [
     CommonModule,
