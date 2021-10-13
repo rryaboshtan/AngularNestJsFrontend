@@ -9,7 +9,7 @@ import { DashboardPageComponent } from './pages/dashboard-page.component';
     CommonModule,
     RouterModule.forChild([
       {
-        path: 'dashboard',
+        path: '',
         component: DashboardPageComponent,
       },
     ]),

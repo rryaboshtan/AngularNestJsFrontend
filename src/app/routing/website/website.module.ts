@@ -23,6 +23,13 @@ import { RouterModule } from '@angular/router';
           ),
       },
       {
+        path: 'admin',
+        loadChildren: () =>
+          import('./routing/admin/admin.module').then(
+            (module) => module.AdminModule
+          ),
+      },
+      {
         path: '**',
         loadChildren: () =>
           import('./routing/not-found/not-found.module').then(
