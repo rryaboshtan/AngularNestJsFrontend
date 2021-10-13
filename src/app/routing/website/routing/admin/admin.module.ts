@@ -19,6 +19,14 @@ import { DashboardPageComponent } from './routing/dashboard/pages/dashboard-page
         pathMatch: 'full',
         redirectTo: 'dashboard',
       },
+      {
+        path: 'dashboard',
+        pathMatch: 'full',
+        loadChildren: () =>
+          import('./routing/dashboard/dashboard.module').then(
+            (module) => module.DashboardModule
+          ),
+      },
     ]),
   ],
 })
