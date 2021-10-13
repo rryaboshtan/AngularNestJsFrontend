@@ -1,9 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { NotFoundPageComponent } from './routing/not-found/pages/not-found-page/not-found-page.component';
-import { HomeModule } from './routing/home/home.module';
 
 @NgModule({
   declarations: [],
@@ -16,6 +13,13 @@ import { HomeModule } from './routing/home/home.module';
         loadChildren: () =>
           import('./routing/home/home.module').then(
             (module) => module.HomeModule
+          ),
+      },
+      {
+        path: 'admin/auth',
+        loadChildren: () =>
+          import('./routing/admin-auth/admin-auth.module').then(
+            (module) => module.AdminLoginModule
           ),
       },
       {
