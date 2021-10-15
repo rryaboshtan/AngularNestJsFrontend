@@ -11,7 +11,7 @@ import { MatSliderModule } from '@angular/material/slider';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([]),
+    RouterModule.forRoot([{ path: 'admin-login-block', loadChildren: () => import('./routing/view/admin-login-block/admin-login-block.module').then(m => m.AdminLoginBlockModule) }]),
     WebsiteModule,
     BrowserAnimationsModule],
   providers: [],
