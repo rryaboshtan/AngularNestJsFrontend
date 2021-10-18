@@ -1,11 +1,13 @@
 <form>
+    <h2>Авторизация на сайте</h2>
+
   <mat-form-field>
     <mat-label>Логин</mat-label>
     <input matInput />
     <mat-error>Это поле обязательно</mat-error>
   </mat-form-field>
 
-  <mat-divider></mat-divider>
+  <!-- <mat-divider></mat-divider> -->
 
   <mat-form-field>
     <mat-label>Пароль</mat-label>
@@ -13,7 +15,8 @@
     <mat-error>Это поле обязательно</mat-error>
   </mat-form-field>
 
-  <mat-error>Комбинация логин и пароль неверная</mat-error>
-
+  
   <button mat-raised-button color="primary">Войти</button>
+  
+  <mat-error *ngIf='formError'>{{formError}}</mat-error>
 </form>
