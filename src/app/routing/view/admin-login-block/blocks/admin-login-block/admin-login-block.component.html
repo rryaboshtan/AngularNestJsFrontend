@@ -1,4 +1,5 @@
-<app-admin-login-form-ui 
-    [formError]='serverError'
-    (login)='onLogin($event)'
-></app-admin-login-form-ui>  
+<app-admin-login-form-ui
+  *ngIf="loaded$ | async"
+  [formError]="serverError$ | async"
+  (login)="onLogin($event)"
+></app-admin-login-form-ui>

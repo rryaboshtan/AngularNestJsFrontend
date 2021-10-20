@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import * as AdminAuth from 'src/app/store/admin-auth-store/store/admin-auth.selectors';
 
 @Component({
   selector: 'app-admin-login-block',
@@ -7,9 +9,13 @@ import { Store } from '@ngrx/store';
   styleUrls: ['./admin-login-block.component.scss'],
 })
 export class AdminLoginBlockComponent implements OnInit {
-  serverError = '';
+  constructor(private store$: Store) {}
 
-  constructor(private store: Store) {}
+  loading$: Observable<boolean> = this.store$.pipe(select(AdminAuth.getLoading));
+  loaded$: Observable<boolean> = this.store$.pipe(select(AdminAuth.getLoaded));
+  serverError$: Observable<string> = this.store$.pipe(select(AdminAuth.getServerError));
+
+  serverError = '';
 
   ngOnInit(): void {}
 

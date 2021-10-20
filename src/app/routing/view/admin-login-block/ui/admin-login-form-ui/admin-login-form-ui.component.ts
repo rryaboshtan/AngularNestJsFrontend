@@ -9,7 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class AdminLoginFormUiComponent implements OnInit {
   formGroup: FormGroup = new FormGroup({});
 
-  @Input() formError = '';
+  @Input() formError: string | null = '';
   @Output() login = new EventEmitter();
 
   constructor() {}
