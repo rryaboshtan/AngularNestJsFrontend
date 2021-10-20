@@ -6,6 +6,10 @@ import { AppComponent } from './app.component';
 import { WebsiteModule } from './routing/website/website.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
+import { DEFAULT_ROUTER_FEATURENAME, routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
   declarations: [AppComponent],
@@ -13,7 +17,12 @@ import { MatSliderModule } from '@angular/material/slider';
     BrowserModule,
     RouterModule.forRoot([{ path: 'admin-login-block', loadChildren: () => import('./routing/view/admin-login-block/admin-login-block.module').then(m => m.AdminLoginBlockModule) }]),
     WebsiteModule,
-    BrowserAnimationsModule],
+    BrowserAnimationsModule,
+    StoreModule.forRoot({
+      [DEFAULT_ROUTER_FEATURENAME]: routerReducer,
+    }, {}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreRouterConnectingModule.forRoot()],
   providers: [],
   bootstrap: [AppComponent],
 })
