@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-admin-login-block',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class AdminLoginBlockComponent implements OnInit {
   serverError = '';
 
-  constructor() {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {}
 
