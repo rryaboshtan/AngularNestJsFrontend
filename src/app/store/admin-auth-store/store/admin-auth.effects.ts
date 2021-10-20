@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { of } from 'rxjs';
 import { map, switchMap} from 'rxjs/operators';
 import { AdminAuthService } from '../services/admin-auth.service';
 import { login, loginSuccess } from './admin-auth.actions';
