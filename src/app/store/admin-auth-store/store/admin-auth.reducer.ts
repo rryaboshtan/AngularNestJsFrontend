@@ -15,7 +15,7 @@ export interface AdminAuthState {
 
 const initialState: AdminAuthState = {
   loaded: true,
-  loading: false,
+  loading: true,
   serverError: 'FOOO',
 };
 

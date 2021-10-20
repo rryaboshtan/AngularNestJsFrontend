@@ -16,7 +16,7 @@
   </mat-form-field>
 
   
-  <button mat-raised-button color="primary" [disabled]='formGroup.invalid || !!formError'>Войти</button>
+  <button mat-raised-button color="primary" [disabled]='disabled || formGroup.invalid || !!formError'>Войти</button>
 
   {{formGroup.invalid | json}}
   

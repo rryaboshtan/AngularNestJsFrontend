@@ -10,6 +10,7 @@ export class AdminLoginFormUiComponent implements OnInit {
   formGroup: FormGroup = new FormGroup({});
 
   @Input() formError: string | null = '';
+  @Input() disabled: boolean | null = false;
   @Output() login = new EventEmitter();
 
   constructor() {}
