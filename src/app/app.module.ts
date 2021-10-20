@@ -10,6 +10,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { AdminAuthStoreModule } from './store/admin-auth-store/admin-auth-store.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,6 +33,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
       logOnly: environment.production,
     }),
     StoreRouterConnectingModule.forRoot(),
+    AdminAuthStoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
