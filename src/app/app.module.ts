@@ -9,20 +9,30 @@ import { MatSliderModule } from '@angular/material/slider';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-import { DEFAULT_ROUTER_FEATURENAME, routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot([{ path: 'admin-login-block', loadChildren: () => import('./routing/view/admin-login-block/admin-login-block.module').then(m => m.AdminLoginBlockModule) }]),
+    RouterModule.forRoot([
+      {
+        path: 'admin-login-block',
+        loadChildren: () =>
+          import(
+            './routing/view/admin-login-block/admin-login-block.module'
+          ).then((m) => m.AdminLoginBlockModule),
+      },
+    ]),
     WebsiteModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({
-      [DEFAULT_ROUTER_FEATURENAME]: routerReducer,
-    }, {}),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    StoreRouterConnectingModule.forRoot()],
+    StoreModule.forRoot({}, {}),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
+    StoreRouterConnectingModule.forRoot(),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
