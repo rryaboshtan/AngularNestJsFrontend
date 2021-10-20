@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { login } from 'src/app/store/admin-auth-store/store/admin-auth.actions';
 import * as AdminAuth from 'src/app/store/admin-auth-store/store/admin-auth.selectors';
 
 @Component({
@@ -19,8 +20,9 @@ export class AdminLoginBlockComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onLogin(value: any) {
-    console.log('OnLogin', value);
-    this.serverError += 'F';
+  onLogin(loginPayload: {login: string, password: string}) {
+    console.log('OnLogin', loginPayload);
+    // this.serverError += 'F';
+    this.store$.dispatch(login(loginPayload))
   }
 }
