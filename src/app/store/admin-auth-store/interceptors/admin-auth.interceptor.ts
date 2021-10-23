@@ -6,10 +6,11 @@ import {
   HttpInterceptor,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AdminAuthService } from '../services/admin-auth.service';
 
 @Injectable()
 export class AdminAuthInterceptor implements HttpInterceptor {
-  constructor() {}
+  constructor(private adminAuthService: AdminAuthService) {}
 
   intercept(
     request: HttpRequest<unknown>,
@@ -17,6 +18,13 @@ export class AdminAuthInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<unknown>> {
 
     console.log('hey');
+    if (this.adminAuthService.accessToken) {
+      request = request.clone({
+        setHeaders: {
+          Authorization: `Bearer ${this.adminAuthService.accessToken}` 
+        }
+      })
+    }
     return next.handle(request);
   }
 }
