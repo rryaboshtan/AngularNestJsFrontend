@@ -1,9 +1,9 @@
-<form [formGroup]='formGroup' (input)='onFormChange()' (ngSubmit)='onSubmit()'>
-    <h2>Авторизация на сайте</h2>
+<form [formGroup]="formGroup" (input)="onFormChange()" (ngSubmit)="onSubmit()">
+  <h2>Авторизация на сайте</h2>
 
   <mat-form-field>
     <mat-label>Логин</mat-label>
-    <input matInput formControlName='login' />
+    <input matInput formControlName="login" />
     <mat-error>Это поле обязательно</mat-error>
   </mat-form-field>
 
@@ -11,15 +11,19 @@
 
   <mat-form-field>
     <mat-label>Пароль</mat-label>
-    <input matInput formControlName='password'/>
+    <input matInput type="password" formControlName="password" />
     <mat-error>Это поле обязательно</mat-error>
   </mat-form-field>
 
-  
-  <button mat-raised-button color="primary" [disabled]='disabled || formGroup.invalid || !!formError'>Войти</button>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="disabled || formGroup.invalid || !!formError"
+  >
+    Войти
+  </button>
 
-  {{formGroup.invalid | json}}
-  
-  <mat-error *ngIf='formError'>{{formError}}</mat-error>
+  {{ formGroup.invalid | json }}
+
+  <mat-error *ngIf="formError">{{ formError }}</mat-error>
 </form>
-
