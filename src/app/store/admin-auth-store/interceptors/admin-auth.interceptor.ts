@@ -6,25 +6,33 @@ import {
   HttpInterceptor,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AdminAuthService } from '../services/admin-auth.service';
+import { select, Store } from '@ngrx/store';
+import { getAccessToken } from '../store/admin-auth.selectors';
+import { first, flatMap } from 'rxjs/operators';
 
 @Injectable()
 export class AdminAuthInterceptor implements HttpInterceptor {
-  constructor(private adminAuthService: AdminAuthService) {}
+  constructor(
+    private store$: Store
+  ) {}
 
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-
-    console.log('hey');
-    if (this.adminAuthService.accessToken) {
-      request = request.clone({
-        setHeaders: {
-          Authorization: `Bearer ${this.adminAuthService.accessToken}` 
-        }
+    return this.store$.pipe(
+      select(getAccessToken),
+      first(),
+      flatMap((token) => {
+        const authRequest = token
+          ? request.clone({
+              setHeaders: {
+                Authorization: `Bearer ${token}`,
+              },
+            })
+          : request;
+        return next.handle(authRequest);
       })
-    }
-    return next.handle(request);
+    );
   }
 }
