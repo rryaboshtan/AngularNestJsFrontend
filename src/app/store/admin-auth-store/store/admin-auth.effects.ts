@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, switchMap, delay } from 'rxjs/operators';
+import { catchError, map, switchMap, delay, delayWhen } from 'rxjs/operators';
 import { AdminAuthService } from '../services/admin-auth.service';
 import { login, loginFailed, loginSuccess } from './admin-auth.actions';
-import { of } from 'rxjs';
+import { of, timer } from 'rxjs';
 import { AuthData } from './admin-auth.reducer';
 
 @Injectable()
@@ -34,7 +34,9 @@ export class AdminAuthEffects {
   refresh$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loginSuccess),
-      delay(5000),
+        delayWhen((action: AuthData) => timer(
+          action.exp * 1000 - 60 * 1000 - Date.now() 
+      )),
       switchMap(() =>
         this.adminAuthService
           .refresh()
