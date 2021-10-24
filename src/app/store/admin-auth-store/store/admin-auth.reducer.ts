@@ -37,9 +37,9 @@ export const adminAuthReducer = createReducer(
   })),
   on(
     loginSuccess,
-    (state, { type, ...authData }: { type: string } & AuthData) => ({
+    (state, { authData: AuthData }) => ({
       ...state,
-      authData,
+      authData: AuthData,
       loaded: true,
       loading: false,
       serverError: '',

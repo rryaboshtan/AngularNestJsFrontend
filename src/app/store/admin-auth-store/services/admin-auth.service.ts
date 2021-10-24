@@ -14,10 +14,7 @@ export class AdminAuthService {
     private jwtHelperService: JwtHelperService
   ) {}
 
-  login(body: {
-    username: string;
-    password: string;
-  }): Observable<AuthData> {
+  login(body: { username: string; password: string }): Observable<AuthData> {
     return this.httpClient
       .post<{ accessToken: string }>('http://localhost:3000/auth/login', body)
       .pipe(
