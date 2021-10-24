@@ -15,3 +15,10 @@ export const loginFailed = createAction(
   '[Admin Auth] login failed',
   props<{ serverError: string }>()
 );
+
+export const initAdminAuth = createAction(
+  '[Admin Auth] init admin auth'
+);
+
+export const logoutSuccess = createAction(
+  '[Admin Auth] logout success');
