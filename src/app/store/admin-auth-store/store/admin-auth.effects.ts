@@ -50,7 +50,7 @@ export class AdminAuthEffects {
   refresh$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loginSuccess),
-      delayWhen((action: AuthData) =>
+      switchMap((action: AuthData) =>
         timer(action.exp * 1000 - 60 * 1000 - Date.now())
       ),
       switchMap(() =>
@@ -60,13 +60,8 @@ export class AdminAuthEffects {
           filter((isAdminAuth) => isAdminAuth)
         )
       ),
-      switchMap(() =>
-        this.adminAuthService
-          .refresh()
-          .pipe(
-            map((loginSuccessData: AuthData) => loginSuccess(loginSuccessData))
-          )
-      )
+      switchMap(() => this.adminAuthService.refresh()),
+      map((loginSuccessData: AuthData) => loginSuccess(loginSuccessData))
     )
   );
 
