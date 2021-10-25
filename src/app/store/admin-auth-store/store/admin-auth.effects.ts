@@ -8,6 +8,8 @@ import {
   first,
   filter,
   tap,
+  distinctUntilChanged,
+  skip,
 } from 'rxjs/operators';
 import { AdminAuthService } from '../services/admin-auth.service';
 import {
@@ -21,7 +23,8 @@ import {
 import { fromEvent, of, timer } from 'rxjs';
 import { AuthData } from './admin-auth.reducer';
 import { select, Store } from '@ngrx/store';
-import { isAuth } from './admin-auth.selectors';
+import { getAuthData, isAuth } from './admin-auth.selectors';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AdminAuthEffects {
@@ -70,8 +73,7 @@ export class AdminAuthEffects {
     () =>
       this.actions$.pipe(
         ofType(loginSuccess),
-        tap(({authData}) => {
-
+        tap(({ authData }) => {
           localStorage.setItem('authData', JSON.stringify(authData));
         })
       ),
@@ -94,7 +96,7 @@ export class AdminAuthEffects {
         if (authData.exp * 1000 - 10 * 1000 - Date.now() < 0) {
           return logoutSuccess();
         }
-        return loginSuccess({authData});
+        return loginSuccess({ authData });
       })
     )
   );
@@ -107,9 +109,25 @@ export class AdminAuthEffects {
     )
   );
 
+  listenAuthorizeEffect$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(initAdminAuth),
+      switchMap(() => this.adminAuthService.isAuth$),
+      //when false changes to true, not when we get two true values
+      distinctUntilChanged(),
+      skip(1),
+      tap(isAuthorized => {
+        this.router.navigateByUrl(
+          isAuthorized ? '/admin' : '/admin/auth/login'
+        );
+      })
+    ), {dispatch: false}
+  );
+
   constructor(
     private actions$: Actions,
     private adminAuthService: AdminAuthService,
-    private store$: Store
+    private store$: Store,
+    private router: Router,
   ) {}
 }
