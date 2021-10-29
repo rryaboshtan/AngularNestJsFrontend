@@ -5,6 +5,7 @@ import { DEFAULT_ROUTER_FEATURENAME, routerReducer } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { AdminAuthGuard } from './guards/admin-auth.guard';
 import { AdminGuestGuard } from './guards/admin-guest.guard';
+import { AdminFooterBlockModule } from '../view/admin-footer-block/admin-footer-block.module';
 
 @NgModule({
   declarations: [],
@@ -46,6 +47,7 @@ import { AdminGuestGuard } from './guards/admin-guest.guard';
           ),
       },
     ]),
+    // AdminFooterBlockModule,
   ],
   providers: [AdminGuestGuard, AdminAuthGuard],
 })

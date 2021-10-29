@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { AdminPageComponent } from './pages/admin-page/admin-page.component';
+import { AdminFooterBlockModule } from 'src/app/routing/view/admin-footer-block/admin-footer-block.module';
 
 @NgModule({
   declarations: [
+    AdminPageComponent
   ],
   imports: [
     CommonModule,
@@ -16,12 +19,14 @@ import { RouterModule } from '@angular/router';
       {
         path: 'dashboard',
         pathMatch: 'full',
+        component: AdminPageComponent,
         loadChildren: () =>
           import('./routing/dashboard/dashboard.module').then(
             (module) => module.DashboardModule
           ),
       },
     ]),
+    AdminFooterBlockModule,
   ],
 })
 export class AdminModule {}
