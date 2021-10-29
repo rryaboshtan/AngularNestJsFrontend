@@ -7,6 +7,6 @@ import { AdminFooterBlockComponent } from './blocks/admin-footer-block/admin-foo
 @NgModule({
   declarations: [AdminFooterBlockComponent],
   imports: [CommonModule],
-  
+  exports: [AdminFooterBlockComponent],
 })
 export class AdminFooterBlockModule {}
