@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
+import { AdminFooterBlockModule } from 'src/app/routing/view/admin-footer-block/admin-footer-block.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AdminPageComponent } from './pages/admin-page/admin-page.component';
           ),
       },
     ]),
+    AdminFooterBlockModule,
   ],
 })
 export class AdminModule {}
