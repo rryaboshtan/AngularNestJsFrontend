@@ -8,8 +8,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 
-
-
 @NgModule({
   declarations: [AdminLoginBlockComponent, AdminLoginFormUiComponent],
   imports: [

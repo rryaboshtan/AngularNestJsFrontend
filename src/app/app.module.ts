@@ -12,6 +12,7 @@ import { environment } from '../environments/environment';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { AdminAuthStoreModule } from './store/admin-auth-store/admin-auth-store.module';
 import { EffectsModule } from '@ngrx/effects';
+import { AdminHeaderBlockModule } from './routing/view/admin-header-block/admin-header-block.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,6 +37,7 @@ import { EffectsModule } from '@ngrx/effects';
     StoreRouterConnectingModule.forRoot(),
     AdminAuthStoreModule,
     EffectsModule.forRoot([]),
+    AdminHeaderBlockModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

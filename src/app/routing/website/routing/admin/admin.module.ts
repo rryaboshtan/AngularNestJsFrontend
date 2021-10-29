@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { AdminFooterBlockModule } from 'src/app/routing/view/admin-footer-block/admin-footer-block.module';
+import { AdminHeaderBlockModule } from 'src/app/routing/view/admin-header-block/admin-header-block.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AdminFooterBlockModule } from 'src/app/routing/view/admin-footer-block/
           ),
       },
     ]),
+    AdminHeaderBlockModule,
     AdminFooterBlockModule,
   ],
 })
