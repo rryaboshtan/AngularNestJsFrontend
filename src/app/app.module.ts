@@ -13,6 +13,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { AdminAuthStoreModule } from './store/admin-auth-store/admin-auth-store.module';
 import { EffectsModule } from '@ngrx/effects';
 import { AdminHeaderBlockModule } from './routing/view/admin-header-block/admin-header-block.module';
+import { GridModule } from './routing/website/routing/admin/routing/grid/grid.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +27,7 @@ import { AdminHeaderBlockModule } from './routing/view/admin-header-block/admin-
             './routing/view/admin-login-block/admin-login-block.module'
           ).then((m) => m.AdminLoginBlockModule),
       },
+      { path: 'form', loadChildren: () => import('./routing/website/routing/admin/routing/form/form.module').then(m => m.FormModule) },
     ]),
     WebsiteModule,
     BrowserAnimationsModule,
@@ -38,6 +40,7 @@ import { AdminHeaderBlockModule } from './routing/view/admin-header-block/admin-
     AdminAuthStoreModule,
     EffectsModule.forRoot([]),
     AdminHeaderBlockModule,
+    GridModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

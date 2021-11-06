@@ -6,9 +6,7 @@ import { AdminFooterBlockModule } from 'src/app/routing/view/admin-footer-block/
 import { AdminHeaderBlockModule } from 'src/app/routing/view/admin-header-block/admin-header-block.module';
 
 @NgModule({
-  declarations: [
-    AdminPageComponent
-  ],
+  declarations: [AdminPageComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([
@@ -24,6 +22,22 @@ import { AdminHeaderBlockModule } from 'src/app/routing/view/admin-header-block/
         loadChildren: () =>
           import('./routing/dashboard/dashboard.module').then(
             (module) => module.DashboardModule
+          ),
+      },
+      {
+        path: 'grid/:namespace/:entity',
+        component: AdminPageComponent,
+        loadChildren: () =>
+          import('./routing/grid/grid.module').then(
+            (module) => module.GridModule
+          ),
+      },
+      {
+        path: 'form/:namespace/:entity',
+        component: AdminPageComponent,
+        loadChildren: () =>
+          import('./routing/form/form.module').then(
+            (module) => module.FormModule
           ),
       },
     ]),
