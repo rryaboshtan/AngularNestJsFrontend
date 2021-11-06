@@ -8,7 +8,7 @@ export const login = createAction(
 
 export const loginSuccess = createAction(
   '[Admin Auth] login success',
-  props<{authData: AuthData}>()
+  props<{ authData: AuthData }>()
 );
 
 export const loginFailed = createAction(
@@ -16,14 +16,10 @@ export const loginFailed = createAction(
   props<{ serverError: string }>()
 );
 
-export const initAdminAuth = createAction(
-  '[Admin Auth] init admin auth'
-);
+export const initAdminAuth = createAction('[Admin Auth] init admin auth');
 
-export const logoutSuccess = createAction(
-  '[Admin Auth] logout success'
-);
+export const logout = createAction('[Admin Auth] logout');
 
-export const extractLoginData = createAction(
-  '[Admin Auth] extract login data');
+export const logoutSuccess = createAction('[Admin Auth] logout success');
 
+export const extractLoginData = createAction('[Admin Auth] extract login data');
