@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {FlatTreeControl} from '@angular/cdk/tree';
-// import {Component} from '@angular/core';
-import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
+import { NestedTreeControl } from '@angular/cdk/tree';
+import { Component } from '@angular/core';
+import { MatTreeNestedDataSource } from '@angular/material/tree';
 
 /**
  * Food data with nested structure.
@@ -15,65 +14,39 @@ interface FoodNode {
 const TREE_DATA: FoodNode[] = [
   {
     name: 'Fruit',
-    children: [{name: 'Apple'}, {name: 'Banana'}, {name: 'Fruit loops'}],
+    children: [{ name: 'Apple' }, { name: 'Banana' }, { name: 'Fruit loops' }],
   },
   {
     name: 'Vegetables',
     children: [
       {
         name: 'Green',
-        children: [{name: 'Broccoli'}, {name: 'Brussels sprouts'}],
+        children: [{ name: 'Broccoli' }, { name: 'Brussels sprouts' }],
       },
       {
         name: 'Orange',
-        children: [{name: 'Pumpkins'}, {name: 'Carrots'}],
+        children: [{ name: 'Pumpkins' }, { name: 'Carrots' }],
       },
     ],
   },
 ];
 
-/** Flat node with expandable and level information */
-interface ExampleFlatNode {
-  expandable: boolean;
-  name: string;
-  level: number;
-}
-
 /**
- * @title Tree with flat nodes
+ * @title Tree with nested nodes
  */
-
 @Component({
   selector: 'app-nested-tree-ui',
   templateUrl: './nested-tree-ui.component.html',
   styleUrls: ['./nested-tree-ui.component.scss'],
 })
-export class NestedTreeUiComponent{
-  private _transformer = (node: FoodNode, level: number) => {
-    return {
-      expandable: !!node.children && node.children.length > 0,
-      name: node.name,
-      level: level,
-    };
-  };
-
-  treeControl = new FlatTreeControl<ExampleFlatNode>(
-    (node) => node.level,
-    (node) => node.expandable
-  );
-
-  treeFlattener = new MatTreeFlattener(
-    this._transformer,
-    (node) => node.level,
-    (node) => node.expandable,
-    (node) => node.children
-  );
-
-  dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
+export class NestedTreeUiComponent {
+  treeControl = new NestedTreeControl<FoodNode>((node) => node.children);
+  dataSource = new MatTreeNestedDataSource<FoodNode>();
 
   constructor() {
     this.dataSource.data = TREE_DATA;
   }
 
-  hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
+  hasChild = (_: number, node: FoodNode) =>
+    !!node.children && node.children.length > 0;
 }
