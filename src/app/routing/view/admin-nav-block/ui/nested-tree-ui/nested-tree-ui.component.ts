@@ -17,10 +17,6 @@ export class NestedTreeUiComponent implements OnChanges {
   treeControl = new NestedTreeControl<NestedTreeNode>((node) => node.children);
   dataSource = new MatTreeNestedDataSource<NestedTreeNode>();
 
-  @Input() set data(nodes: any) {
-    this.dataSource.data = nodes;
-    
-  }
   hasChild = (_: number, node: NestedTreeNode) =>
     !!node.children && node.children.length > 0;
 
