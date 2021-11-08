@@ -1,6 +1,6 @@
 import { createReducer} from '@ngrx/store';
 
-export const ADMIN_MENU_FEATURE_NAME = 'admin-auth';
+export const ADMIN_MENU_FEATURE_NAME = 'admin-menu';
 
 export interface NestedTreeNode {
   name: string;

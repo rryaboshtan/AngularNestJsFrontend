@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
-import { NestedTreeNode } from '../../models/nested-tree-node';
+import { NestedTreeNode } from 'src/app/store/admin-menu-store/store/admin-menu.reducer';
 
 const TREE_DATA: NestedTreeNode[] = [
   {
