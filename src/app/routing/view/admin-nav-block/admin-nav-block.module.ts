@@ -4,6 +4,7 @@ import { AdminNavBlockComponent } from './blocks/admin-nav-block/admin-nav-block
 import { NestedTreeUiComponent } from './ui/nested-tree-ui/nested-tree-ui.component';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     MatTreeModule,
     MatIconModule,
   ],
