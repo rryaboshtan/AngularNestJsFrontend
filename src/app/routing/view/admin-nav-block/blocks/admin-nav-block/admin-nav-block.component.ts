@@ -32,8 +32,8 @@ const TREE_DATA: NestedTreeNode[] = [
 export class AdminNavBlockComponent implements OnInit {
 
   data: Observable<NestedTreeNode[]> = of<NestedTreeNode[]>(TREE_DATA).pipe(
-    delay(500),
-  );
+    delay(500)
+  )
 
   constructor() { }
 

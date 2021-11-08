@@ -1,5 +1,5 @@
 import { NestedTreeControl } from '@angular/cdk/tree';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { NestedTreeNode } from '../../models/nested-tree-node';
 
@@ -11,7 +11,7 @@ import { NestedTreeNode } from '../../models/nested-tree-node';
   templateUrl: './nested-tree-ui.component.html',
   styleUrls: ['./nested-tree-ui.component.scss'],
 })
-export class NestedTreeUiComponent implements OnInit {
+export class NestedTreeUiComponent implements OnChanges {
   @Input() nodes: any = [];
 
   treeControl = new NestedTreeControl<NestedTreeNode>((node) => node.children);
@@ -21,12 +21,12 @@ export class NestedTreeUiComponent implements OnInit {
     this.dataSource.data = nodes;
     
   }
-
-  constructor() {}
-
-  ngOnInit(): void {
-    this.dataSource.data = this.nodes;
-  }
   hasChild = (_: number, node: NestedTreeNode) =>
     !!node.children && node.children.length > 0;
+
+  ngOnChanges(changes: SimpleChanges):void {
+    if (changes.nodes) {
+      this.dataSource.data = this.nodes;
+    }
+  }
 }
