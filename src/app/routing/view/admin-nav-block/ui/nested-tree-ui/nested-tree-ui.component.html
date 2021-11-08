@@ -1,9 +1,9 @@
-<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="example-tree">
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="tree">
   <!-- This is the tree node template for leaf nodes -->
   <!-- There is inline padding applied to this node using styles.
     This padding value depends on the mat-icon-button width. -->
   <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
-    <a [routerLink]="node.href">
+    <a mat-button [routerLink]="node.href">
         <mat-icon *ngIf="node.icon" class="mat-icon-rtl-mirror">
           {{node.icon}}
         </mat-icon>
@@ -25,7 +25,7 @@
     </div>
     <!-- There is inline padding applied to this div using styles.
         This padding value depends on the mat-icon-button width.  -->
-    <div [class.example-tree-invisible]="!treeControl.isExpanded(node)"
+    <div [class.tree-invisible]="!treeControl.isExpanded(node)"
          role="group">
       <ng-container matTreeNodeOutlet></ng-container>
     </div>

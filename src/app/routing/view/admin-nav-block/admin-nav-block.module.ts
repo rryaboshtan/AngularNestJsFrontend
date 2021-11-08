@@ -5,6 +5,7 @@ import { NestedTreeUiComponent } from './ui/nested-tree-ui/nested-tree-ui.compon
 import { MatTreeModule } from '@angular/material/tree';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     RouterModule,
+    MatButtonModule,
     MatTreeModule,
     MatIconModule,
   ],
