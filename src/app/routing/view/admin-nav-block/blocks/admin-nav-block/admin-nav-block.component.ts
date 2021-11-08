@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { initMenu } from 'src/app/store/admin-menu-store/store/admin-menu.actions';
 import { NestedTreeNode } from 'src/app/store/admin-menu-store/store/admin-menu.reducer';
 
 const TREE_DATA: NestedTreeNode[] = [
@@ -63,7 +65,9 @@ export class AdminNavBlockComponent implements OnInit {
     delay(500)
   );
 
-  constructor() {}
+  constructor(private store$: Store) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.store$.dispatch(initMenu())
+  }
 }
