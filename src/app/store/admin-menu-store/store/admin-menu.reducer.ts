@@ -23,7 +23,7 @@ export interface AdminMenuState {
 }
 
 const initialState: AdminMenuState = {
-  loaded: true,
+  loaded: false,
   loading: false,
   serverError: '',
   data: [],

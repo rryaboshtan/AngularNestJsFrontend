@@ -1,59 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Observable, of } from 'rxjs';
-import { delay } from 'rxjs/operators';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { initMenu } from 'src/app/store/admin-menu-store/store/admin-menu.actions';
 import { NestedTreeNode } from 'src/app/store/admin-menu-store/store/admin-menu.reducer';
-
-const TREE_DATA: NestedTreeNode[] = [
-  {
-    name: 'Contents',
-    children: [
-      {
-        name: 'Pages',
-        href: '/admin/grid/content/pages',
-      },
-      {
-        name: 'Posts',
-        href: '/admin/grid/content/posts',
-      },
-      {
-        name: 'Comments',
-        href: '/admin/grid/content/comments',
-      },
-    ],
-  },
-  {
-    name: 'Accounts',
-    icon: 'perm_identity',
-    children: [
-      {
-        name: 'Admins',
-        icon: 'manage_accounts',
-        href: '/admin/grid/account/admins',
-      },
-      {
-        name: 'Users',
-        icon: 'face',
-        href: '/admin/grid/account/users',
-      },
-    ],
-  },
-  {
-    name: 'Settings',
-    icon: 'settings',
-    children: [
-      {
-        name: 'General',
-        href: '/admin/form/settings/general',
-      },
-      {
-        name: 'Catalog',
-        href: '/admin/form/settings/catalog',
-      },
-    ],
-  },
-];
+import { getMenuData } from 'src/app/store/admin-menu-store/store/admin-menu.selectors';
 
 @Component({
   selector: 'app-admin-nav-block',
@@ -61,13 +11,13 @@ const TREE_DATA: NestedTreeNode[] = [
   styleUrls: ['./admin-nav-block.component.scss'],
 })
 export class AdminNavBlockComponent implements OnInit {
-  data: Observable<NestedTreeNode[]> = of<NestedTreeNode[]>(TREE_DATA).pipe(
-    delay(500)
+  data$: Observable<NestedTreeNode[] | null> = this.store$.pipe(
+    select(getMenuData)
   );
 
   constructor(private store$: Store) {}
 
   ngOnInit(): void {
-    this.store$.dispatch(initMenu())
+    this.store$.dispatch(initMenu());
   }
 }
