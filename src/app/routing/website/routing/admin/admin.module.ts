@@ -13,33 +13,35 @@ import { AdminNavBlockModule } from 'src/app/routing/view/admin-nav-block/admin-
     RouterModule.forChild([
       {
         path: '',
-        pathMatch: 'full',
-        redirectTo: 'dashboard',
-      },
-      {
-        path: 'dashboard',
-        pathMatch: 'full',
         component: AdminPageComponent,
-        loadChildren: () =>
-          import('./routing/dashboard/dashboard.module').then(
-            (module) => module.DashboardModule
-          ),
-      },
-      {
-        path: 'grid/:namespace/:entity',
-        component: AdminPageComponent,
-        loadChildren: () =>
-          import('./routing/grid/grid.module').then(
-            (module) => module.GridModule
-          ),
-      },
-      {
-        path: 'form/:namespace/:entity',
-        component: AdminPageComponent,
-        loadChildren: () =>
-          import('./routing/form/form.module').then(
-            (module) => module.FormModule
-          ),
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            redirectTo: 'dashboard',
+          },
+          {
+            path: 'dashboard',
+            loadChildren: () =>
+              import('./routing/dashboard/dashboard.module').then(
+                (module) => module.DashboardModule
+              ),
+          },
+          {
+            path: 'grid/:namespace/:entity',
+            loadChildren: () =>
+              import('./routing/grid/grid.module').then(
+                (module) => module.GridModule
+              ),
+          },
+          {
+            path: 'form/:namespace/:entity',
+            loadChildren: () =>
+              import('./routing/form/form.module').then(
+                (module) => module.FormModule
+              ),
+          },
+        ],
       },
     ]),
     AdminHeaderBlockModule,
